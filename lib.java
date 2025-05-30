@@ -12,12 +12,12 @@ public class lib {
 		int intY;
 		// Logo animation
 		for(intY = 680; intY >= 80; intY--) {
-		con.setBackgroundColor(Color.BLACK);
-		// Sets the fill color to the color of the terminal to overwrite previous draw layer and prepare for the next drawing
-		con.drawImage(imgLogo, 540, intY);
-		con.repaint();
-		// Repaints the draw layer to load the image.
-		con.sleep(3);
+			con.setBackgroundColor(Color.BLACK);
+			// Sets the fill color to the color of the terminal to overwrite previous draw layer and prepare for the next drawing
+			con.drawImage(imgLogo, 540, intY);
+			con.repaint();
+			// Repaints the draw layer to load the image.
+			con.sleep(3);
 		}
 		con.setDrawColor(Color.WHITE);
 		con.drawString("Play (p)", 500, 240);
@@ -33,6 +33,13 @@ public class lib {
 				con.closeConsole();
 				// Closes console if quit is chosen.
 			} else if(chKey == 'v' || chKey == 'V') {
+				String[] scoreboard = HighScore();
+				con.setBackgroundColor(Color.BLACK);
+				con.repaint();
+				for(int i = 0; i < 10; i++) {
+					con.drawString(scoreboard[i], 500, 20*i);
+					con.repaint();
+				}
 
 
 			} else {
@@ -41,12 +48,26 @@ public class lib {
 		}
 	}
 
-	public static String HighScore() {
+	public static String[] HighScore() {
 		TextInputFile score = new TextInputFile("score.txt");
-		String strScoreBoard[];
-		// Initialize the array to hold the score data.
-		int intTemp;
 
+		String strTemp;
+		int intCount = 0;
+		while(score.eof() == false) {
+			strTemp = score.readLine();
+			intCount++;
+		}
+		// Loop through the file; determine the amount of data to assign to the array
+		String[] strScoreBoard = new String[intCount];
+		// Assign the amount of data in the file to the new string array
+		score.close();
+		
 
+		score = new TextInputFile("score.txt");
+		for(int i = 0; i < intCount; i++) {
+			strScoreBoard[i] = score.readLine();
+		}
+		score.close();
+		return strScoreBoard;
 	}
 }
