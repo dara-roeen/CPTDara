@@ -13,9 +13,6 @@ public class lib {
 		// Logo animation
 		for(intY = 680; intY >= 80; intY--) {
 		con.setBackgroundColor(Color.BLACK);
-		//con.setDrawColor(Color.BLACK);
-		//con.fillRect(0, 0, 1280, 720);
-		//con.setDrawColor(Color.WHITE);
 		// Sets the fill color to the color of the terminal to overwrite previous draw layer and prepare for the next drawing
 		con.drawImage(imgLogo, 540, intY);
 		con.repaint();
@@ -23,9 +20,10 @@ public class lib {
 		con.sleep(3);
 		}
 		con.setDrawColor(Color.WHITE);
-		con.drawString("Play", 500, 240);
-		con.drawString("View Leaderboard", 500, 280);
-		con.drawString("Quit", 500, 320);
+		con.drawString("Play (p)", 500, 240);
+		con.drawString("View Leaderboard (v)", 500, 280);
+		con.drawString("Quit (q)", 500, 320);
+		con.drawString("Help (h)", 500, 360);
 		con.repaint();
 		
 		// Loops through the conditionals for the menu screen; (p) (q) (v)
@@ -36,9 +34,19 @@ public class lib {
 				// Closes console if quit is chosen.
 			} else if(chKey == 'v' || chKey == 'V') {
 
+
 			} else {
 				continue;
 			}
 		}
+	}
+
+	public static String HighScore() {
+		TextInputFile score = new TextInputFile("score.txt");
+		String strScoreBoard[];
+		// Initialize the array to hold the score data.
+		int intTemp;
+
+
 	}
 }
