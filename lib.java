@@ -14,7 +14,7 @@ public class lib {
 		for(intY = 680; intY >= 80; intY--) {
 			con.setBackgroundColor(Color.BLACK);
 			// Sets the fill color to the color of the terminal to overwrite previous draw layer and prepare for the next drawing
-			con.drawImage(imgLogo, 540, intY);
+			con.drawImage(imgLogo, 440, intY);
 			con.repaint();
 			// Repaints the draw layer to load the image.
 			con.sleep(3);
@@ -33,14 +33,14 @@ public class lib {
 				con.closeConsole();
 				// Closes console if quit is chosen.
 			} else if(chKey == 'v' || chKey == 'V') {
-				String[] scoreboard = HighScore();
+				String[][] scoreboard = HighScore();
 				con.setBackgroundColor(Color.BLACK);
-				con.repaint();
-				for(int i = 0; i < 10; i++) {
-					con.drawString(scoreboard[i], 500, 20*i);
-					con.repaint();
+				con.setDrawColor(Color.WHITE);
+				for(int i = 0; i < 5; i++) {
+					con.drawString(scoreboard[i][0], 500, 20*i);
+					con.drawString(scoreboard[i][1], 500, 40*i);
 				}
-
+					con.repaint();
 
 			} else {
 				continue;
@@ -48,7 +48,7 @@ public class lib {
 		}
 	}
 
-	public static String[] HighScore() {
+	public static String[][] HighScore() {
 		TextInputFile score = new TextInputFile("score.txt");
 
 		String strTemp;
@@ -58,14 +58,18 @@ public class lib {
 			intCount++;
 		}
 		// Loop through the file; determine the amount of data to assign to the array
-		String[] strScoreBoard = new String[intCount];
+		String[][] strScoreBoard = new String[intCount][2];
 		// Assign the amount of data in the file to the new string array
 		score.close();
 		
 
 		score = new TextInputFile("score.txt");
-		for(int i = 0; i < intCount; i++) {
-			strScoreBoard[i] = score.readLine();
+		for(int i = 0; i < intCount; i = i) {
+			if(i % 2 == 0) {
+				strScoreBoard[i][0] = score.readLine();
+			} else {
+				strScoreBoard[i][1] = score.readLine();
+			}
 		}
 		score.close();
 		return strScoreBoard;
