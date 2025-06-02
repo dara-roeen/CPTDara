@@ -9,6 +9,7 @@ public class lib {
 	static Color greenblue = new Color(48, 107, 172);
 	static Color space = new Color(20, 27, 65);
 	static Color tropical = new Color(145, 142, 244);
+	static Font rubik = createFont(PLAIN, "res/Rubik-Bold.ttf");
 	// Initialize all the colors that will be used for the theme that was picked randomly from coolors.co
 	
 	public static void Menu(Console con) {
@@ -16,7 +17,7 @@ public class lib {
 		// Initialize Logo
 		// Add keyboard input for play game (p), view leader-board (v) & quit (q)
 		BufferedImage imgLogo = con.loadImage("res/logo.png");
-		Font rubik = con.loadFont("res/Rubik-SemiBold.tff", 16);
+		Font rubik = con.loadFont("res/Rubik-Bold.tff", 8);
 		con.setDrawFont(rubik);
 		int intY;
 		// Logo animation
