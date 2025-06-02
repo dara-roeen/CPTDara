@@ -1,25 +1,34 @@
 import arc.*;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
+import java.awt.Font;
 
 public class lib {
+	static Color jordy = new Color(152, 185, 242);
+	static Color cornflower = new Color(111, 156, 235);
+	static Color greenblue = new Color(48, 107, 172);
+	static Color space = new Color(20, 27, 65);
+	static Color tropical = new Color(145, 142, 244);
+	// Initialize all the colors that will be used for the theme that was picked randomly from coolors.co
 	
 	public static void Menu(Console con) {
 		// Function will serve purpose of drawing out a main menu and giving function to each option
 		// Initialize Logo
 		// Add keyboard input for play game (p), view leader-board (v) & quit (q)
-		BufferedImage imgLogo = con.loadImage("/home/dara/Documents/GitHub/CPTDara/res/logo.png");
+		BufferedImage imgLogo = con.loadImage("res/logo.png");
+		Font rubik = con.loadFont("res/Rubik-SemiBold.tff", 16);
+		con.setDrawFont(rubik);
 		int intY;
 		// Logo animation
 		for(intY = 680; intY >= 80; intY--) {
-			con.setBackgroundColor(Color.BLACK);
+			con.setBackgroundColor(jordy);
 			// Sets the fill color to the color of the terminal to overwrite previous draw layer and prepare for the next drawing
 			con.drawImage(imgLogo, 440, intY);
 			con.repaint();
 			// Repaints the draw layer to load the image.
 			con.sleep(3);
 		}
-		con.setDrawColor(Color.WHITE);
+		con.setDrawColor(space);
 		con.drawString("Play (p)", 500, 240);
 		con.drawString("View Leaderboard (v)", 500, 280);
 		con.drawString("Quit (q)", 500, 320);
@@ -33,13 +42,16 @@ public class lib {
 				con.closeConsole();
 				// Closes console if quit is chosen.
 			} else if(chKey == 'v' || chKey == 'V') {
+				// Condition for viewing the leaderboard
 				String[][] scoreboard = HighScore();
+				// Load the data from HighScore function
 				con.setBackgroundColor(Color.BLACK);
 				con.setDrawColor(Color.WHITE);
-				for(int i = 0; i < 5; i++) {
-					con.drawString(scoreboard[i][0], 500, 20*i);
-					con.drawString(scoreboard[i][1], 500, 40*i);
+				for(int i = 1; i <= 5; i++) {
+					con.drawString(scoreboard[i-1][0], 400, 40*i);
+					con.drawString(scoreboard[i-1][1], 600, 40*i);
 				}
+				// Prints out the scoreboard data from the array to the screen
 					con.repaint();
 
 			} else {
@@ -50,27 +62,29 @@ public class lib {
 
 	public static String[][] HighScore() {
 		TextInputFile score = new TextInputFile("score.txt");
+		// Open the leaderboard file for writing
 
 		String strTemp;
 		int intCount = 0;
 		while(score.eof() == false) {
-			strTemp = score.readLine();
+			score.readLine();
+			score.readLine();
 			intCount++;
 		}
-		// Loop through the file; determine the amount of data to assign to the array
+		// Loop through the file; determine the amount of data to assign to the length of the array
 		String[][] strScoreBoard = new String[intCount][2];
 		// Assign the amount of data in the file to the new string array
 		score.close();
 		
-
 		score = new TextInputFile("score.txt");
-		for(int i = 0; i < intCount; i = i) {
-			if(i % 2 == 0) {
-				strScoreBoard[i][0] = score.readLine();
-			} else {
-				strScoreBoard[i][1] = score.readLine();
-			}
+		// Reopen file so the pointer is back at the start of the file
+			int i = 0;
+		while(score.eof() == false) {
+			strScoreBoard[i][0] = score.readLine();
+			strScoreBoard[i][1] = score.readLine();
+			i++;
 		}
+		// loops through the file again and assigns the line to the respective indice
 		score.close();
 		return strScoreBoard;
 	}
