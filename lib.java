@@ -9,31 +9,36 @@ public class lib {
 	static Color greenblue = new Color(48, 107, 172);
 	static Color space = new Color(20, 27, 65);
 	static Color tropical = new Color(145, 142, 244);
-	static Font rubik = createFont(PLAIN, "res/Rubik-Bold.ttf");
-	// Initialize all the colors that will be used for the theme that was picked randomly from coolors.co
+	static Font rubik = new Font("res/Rubik-Bold.ttf", Font.PLAIN, 24);
+	// Initialize all the colors & fonts that will be used for the theme. Colors were picked from coolors.co
 	
 	public static void Menu(Console con) {
 		// Function will serve purpose of drawing out a main menu and giving function to each option
 		// Initialize Logo
 		// Add keyboard input for play game (p), view leader-board (v) & quit (q)
 		BufferedImage imgLogo = con.loadImage("res/logo.png");
-		Font rubik = con.loadFont("res/Rubik-Bold.tff", 8);
 		con.setDrawFont(rubik);
 		int intY;
 		// Logo animation
 		for(intY = 680; intY >= 80; intY--) {
-			con.setBackgroundColor(jordy);
+			con.setBackgroundColor(cornflower);
 			// Sets the fill color to the color of the terminal to overwrite previous draw layer and prepare for the next drawing
 			con.drawImage(imgLogo, 440, intY);
 			con.repaint();
 			// Repaints the draw layer to load the image.
 			con.sleep(3);
 		}
+		con.setDrawColor(Color.BLACK);
+		con.fillRoundRect(395, 245, 460, 260, 30, 30);
+		con.setDrawColor(jordy);
+		con.fillRoundRect(400, 250, 450, 250, 30, 30);
+		con.setDrawColor(Color.WHITE);
+		con.fillRect(460, 285, 10, 190);
 		con.setDrawColor(space);
-		con.drawString("Play (p)", 500, 240);
-		con.drawString("View Leaderboard (v)", 500, 280);
-		con.drawString("Quit (q)", 500, 320);
-		con.drawString("Help (h)", 500, 360);
+		con.drawString("Play (p)", 500, 280);
+		con.drawString("View Leaderboard (v)", 500, 330);
+		con.drawString("Help (h)", 500, 380);
+		con.drawString("Quit (q)", 500, 430);
 		con.repaint();
 		
 		// Loops through the conditionals for the menu screen; (p) (q) (v)
