@@ -138,4 +138,30 @@ public class lib {
 		}
 		return strArray;
 	}
+
+	public static int[][] BubbleDeck(int[][] intArray) {
+		int intLength = intArray.length;
+		int intRankTemp, intSuitTemp, intRandTemp;
+		// Just like BubbleStr find the length of the array being sorted
+		for(int intCount = 0; intCount < intLength - 1; intCount++) {
+			for(int i = 0; i < intLength - 1; i++) {
+				if( (intArray[i][2]) > (intArray[i+1][2]) ) {
+					// compare the size of the two integers
+					intRankTemp = intArray[i][0];
+					intArray[i][0] = intArray[i+1][0];
+					intArray[i+1][0] = intRankTemp;
+					// swap rank of the cards
+					intSuitTemp = intArray[i][1];
+					intArray[i][1] = intArray[i+1][1];
+					intArray[i+1][1] = intSuitTemp;
+					// swap the suit of the cards
+					intRandTemp = intArray[i][2];
+					intArray[i][2] = intArray[i+1][2];
+					intArray[i+1][2] = intRandTemp;
+					// swap the random integer attached to the cards
+				}
+			}
+		}
+		return intArray;
+	}
 }
