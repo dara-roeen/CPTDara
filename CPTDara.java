@@ -18,6 +18,8 @@ public static void main(String[] args) {
 		int intMoney = 1000;
 		int intBet = 0;
 		int[][] intDeck = new int[52][3];
+		int[][] intHand = new  int[5][2];
+		// First column is for the rank and second is for suit
 		
 		lib.Menu(con);
 		// Call the menu function to handle all cases and break to access the main game.
@@ -93,15 +95,14 @@ public static void main(String[] args) {
 			intDeck[i][2] = (int) (Math.random()*1000+1);
 		}
 		// This last for loop fills the final column with random numbers so the array can be bubble sorted and randomized.
-
-		for(int i = 0; i < 52; i++) {
-		System.out.println(intDeck[i][0]+" - "+intDeck[i][1]+" - "+intDeck[i][2]);
-		}
-
 		intDeck = lib.BubbleDeck(intDeck);
+		// Pass the deck onto the bubble sort array to be shuffled
+		for(int i = 0; i < 5; i++) {
+		intHand[i][0] = intDeck[i][0];
+		intHand[i][1] = intDeck[i][1];
+		}
+		// Passes the first 5 cards to the hand array.
 
-		for(int i = 0; i < 52; i++) {
-		System.out.println(intDeck[i][0]+" - "+intDeck[i][1]+" - "+intDeck[i][2]);
 		}
 	}
 }

@@ -164,4 +164,10 @@ public class lib {
 		}
 		return intArray;
 	}
+
+	public static int Hand(int[][] intHand) {
+		// There are 10 possible hands in video poker and this playset is going by jacks or better.
+		// This method will identify what hand it is and the correpsonding multiplier to the pot to return.
+		// It will start from the highest scoring hand and go down to the lowest as to not skip over higher ranking hands
+	}
 }
