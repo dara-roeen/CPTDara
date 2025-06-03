@@ -50,8 +50,25 @@ public static void main(String[] args) {
 		con.setDrawColor(greenblue);
 		con.fillRoundRect(420, 310, 380, 50, 30, 30);
 		con.setDrawColor(Color.WHITE);
-		con.drawString("How Much Do You Want to Bet?", 440, 315);
-		intBet = con.readInt();
+			con.drawString("How Much Do You Want to Bet?", 440, 315);
+			intBet = con.readInt();
+			if(intBet > intMoney || intBet < 0) {
+				// condition if the player enters too much money that they do not have
+				while(true) {
+					con.clear();
+					con.setDrawColor(greenblue);
+					con.fillRoundRect(420, 310, 380, 50, 30, 30);
+					con.setDrawColor(Color.WHITE);
+					con.drawString("Invalid Bet, Try Again.", 480, 315);
+					intBet = con.readInt();
+					if(intBet > intMoney || intBet < 0) {
+						continue;
+					} else {
+						break;
+					}
+				} 
+				// this while loop loops over until the player enters a valid amount of money
+			}
 		intMoney = intMoney - intBet;
 		con.setDrawColor(space);
 		con.fillRect(0, 0, 1280, 40);
@@ -102,7 +119,5 @@ public static void main(String[] args) {
 		intHand[i][1] = intDeck[i][1];
 		}
 		// Passes the first 5 cards to the hand array.
-
-		}
 	}
 }
