@@ -62,13 +62,13 @@ public class lib {
 					con.setDrawColor(jordy);
 					con.fillRoundRect(400, 0, 450, 720, 30, 30);
 					con.repaint();
-					con.setDrawColor(Color.WHITE);
+					con.setDrawColor(Color.BLACK);
 					con.drawString("Close and Return to Menu (c)", 450, 650);
 					con.drawString("Leaderboard", 550, 20);
 					// draws the theme for the leaderboard screen
-					for(int i = 0; i <= 10; i++) {
-						con.drawString(scoreboard[i+1][0], 500, 55*i);
-						con.drawString(scoreboard[i+1][1], 700, 55*i);
+					for(int i = 1; i <= 10; i++) {
+						con.drawString(scoreboard[i-1][0], 500, 605 - 55*i);
+						con.drawString(scoreboard[i-1][1], 700, 605 - 55*i);
 						con.drawString(Integer.toString(i), 450, 55*i);
 						// Numbers the players from 1-10
 					}
@@ -82,6 +82,8 @@ public class lib {
 						}
 					}
 					// this loop waits to get input (c) to close the screen and return to menu
+				} else if(chKey == 'p' || chKey == 'P') {
+					break menu;
 				} else {
 				continue menu;
 				}
