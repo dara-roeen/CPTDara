@@ -54,8 +54,8 @@ public class lib {
 					// Closes console if quit is chosen.
 				} else if(chKey == 'v' || chKey == 'V') {
 					// Condition for viewing the leaderboard
-					String[][] scoreboard = HighScore();
-					// Load the data from HighScore function
+					String[][] scoreboard = BubbleStr(HighScore());
+					// Load the data from HighScore function and then pass it onto the bubble sort function to be sorted in order
 					con.setBackgroundColor(greenblue);
 					con.setDrawColor(Color.BLACK);
 					con.fillRoundRect(395, 0, 460, 720, 30, 30);
@@ -66,9 +66,9 @@ public class lib {
 					con.drawString("Close and Return to Menu (c)", 450, 650);
 					con.drawString("Leaderboard", 550, 20);
 					// draws the theme for the leaderboard screen
-					for(int i = 1; i <= 10; i++) {
-						con.drawString(scoreboard[i-1][0], 500, 55*i);
-						con.drawString(scoreboard[i-1][1], 700, 55*i);
+					for(int i = 0; i <= 10; i++) {
+						con.drawString(scoreboard[i+1][0], 500, 55*i);
+						con.drawString(scoreboard[i+1][1], 700, 55*i);
 						con.drawString(Integer.toString(i), 450, 55*i);
 						// Numbers the players from 1-10
 					}
@@ -116,8 +116,24 @@ public class lib {
 		return strScoreBoard;
 	}
 
-	//public static String[][] BubbleStr(String[][] array) {
-	
-	//}
-
+	public static String[][] BubbleStr(String[][] strArray) {
+		int intLength = strArray.length;
+		// use strArray.length to determine the length of the array
+		String strNameTemp, strScoreTemp;
+		for(int intCount = 0; intCount < intLength - 1; intCount++) {
+			for(int i = 0; i < intLength - 1; i++) {
+				if( (Integer.parseInt(strArray[i][1])) > (Integer.parseInt(strArray[i+1][1])) ) {
+					// convert the score into integer data and compare the size
+					strNameTemp = strArray[i][0];
+					strArray[i][0] = strArray[i+1][0];
+					strArray[i+1][0] = strNameTemp;
+					// swap the player names
+					strScoreTemp = strArray[i][1];
+					strArray[i][1] = strArray[i+1][1];
+					strArray[i+1][1] = strScoreTemp;
+				}
+			}
+		}
+		return strArray;
+	}
 }
