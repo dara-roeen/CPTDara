@@ -28,44 +28,65 @@ public class lib {
 			// Repaints the draw layer to load the image.
 			con.sleep(3);
 		}
-		con.setDrawColor(Color.BLACK);
-		con.fillRoundRect(395, 245, 460, 260, 30, 30);
-		con.setDrawColor(jordy);
-		con.fillRoundRect(400, 250, 450, 250, 30, 30);
-		con.setDrawColor(Color.WHITE);
-		con.fillRect(460, 285, 10, 190);
-		con.setDrawColor(space);
-		con.drawString("Play (p)", 500, 280);
-		con.drawString("View Leaderboard (v)", 500, 330);
-		con.drawString("Help (h)", 500, 380);
-		con.drawString("Quit (q)", 500, 430);
-		con.repaint();
-		
-		// Loops through the conditionals for the menu screen; (p) (q) (v)
-		while(true) {
-			char chKey = con.getChar();
-			if(chKey == 'q' || chKey == 'Q') {
-				con.closeConsole();
-				// Closes console if quit is chosen.
-			} else if(chKey == 'v' || chKey == 'V') {
-				// Condition for viewing the leaderboard
-				String[][] scoreboard = HighScore();
-				// Load the data from HighScore function
-				con.setBackgroundColor(Color.BLACK);
+		menu:
+			while(true) {
+				con.setBackgroundColor(cornflower);
+				con.drawImage(imgLogo, 440, 80);
+				// Redraw the logo and background for the menu loop so it does not go through the animation again
+				con.setDrawColor(Color.BLACK);
+				con.fillRoundRect(395, 245, 460, 260, 30, 30);
+				con.setDrawColor(jordy);
+				con.fillRoundRect(400, 250, 450, 250, 30, 30);
 				con.setDrawColor(Color.WHITE);
-				for(int i = 1; i <= 5; i++) {
-					con.drawString(scoreboard[i-1][0], 400, 40*i);
-					con.drawString(scoreboard[i-1][1], 600, 40*i);
-				}
-				// Prints out the scoreboard data from the array to the screen
+				con.fillRect(460, 285, 10, 190);
+				con.setDrawColor(space);
+				con.drawString("Play (p)", 500, 280);
+				con.drawString("View Leaderboard (v)", 500, 330);
+				con.drawString("Help (h)", 500, 380);
+				con.drawString("Quit (q)", 500, 430);
+				con.repaint();
+				// Draws the theme for the main menu and repaints layer
+			
+				// Loops through the conditionals for the menu screen; (p) (q) (v)
+				char chKey = con.getChar();
+				if(chKey == 'q' || chKey == 'Q') {
+					con.closeConsole();
+					// Closes console if quit is chosen.
+				} else if(chKey == 'v' || chKey == 'V') {
+					// Condition for viewing the leaderboard
+					String[][] scoreboard = HighScore();
+					// Load the data from HighScore function
+					con.setBackgroundColor(greenblue);
+					con.setDrawColor(Color.BLACK);
+					con.fillRoundRect(395, 0, 460, 720, 30, 30);
+					con.setDrawColor(jordy);
+					con.fillRoundRect(400, 0, 450, 720, 30, 30);
 					con.repaint();
-
-			} else {
-				continue;
+					con.setDrawColor(Color.WHITE);
+					con.drawString("Close and Return to Menu (c)", 450, 650);
+					con.drawString("Leaderboard", 550, 20);
+					// draws the theme for the leaderboard screen
+					for(int i = 1; i <= 10; i++) {
+						con.drawString(scoreboard[i-1][0], 500, 55*i);
+						con.drawString(scoreboard[i-1][1], 700, 55*i);
+						con.drawString(Integer.toString(i), 450, 55*i);
+						// Numbers the players from 1-10
+					}
+					con.repaint();
+					// loop through the array and print out the top 10 scores
+					while(true) {
+						chKey = con.getChar();
+						if(chKey == 'c' || chKey == 'C') {
+							continue menu;
+							// continues back to the start of the label menu where the main menu gets redrawn and looped over again
+						}
+					}
+					// this loop waits to get input (c) to close the screen and return to menu
+				} else {
+				continue menu;
+				}
 			}
 		}
-	}
-
 	public static String[][] HighScore() {
 		TextInputFile score = new TextInputFile("score.txt");
 		// Open the leaderboard file for writing
@@ -94,4 +115,9 @@ public class lib {
 		score.close();
 		return strScoreBoard;
 	}
+
+	//public static String[][] BubbleStr(String[][] array) {
+	
+	//}
+
 }

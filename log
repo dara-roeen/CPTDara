@@ -1,0 +1,6 @@
+- Work on the leaderboard UI
+- Add a selector for when the user wants to pick an option with the mouse (black overlay on the white bar)
+- Make the leaderboard only go up to the first 10
+- Bubble sort the data for the leaderboard
+- Work on assets for the cards
+- Start working on the array for the deck 
