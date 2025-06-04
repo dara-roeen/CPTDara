@@ -141,8 +141,8 @@ public class lib {
 
 	public static int[][] BubbleDeck(int[][] intArray) {
 		int intLength = intArray.length;
-		int intRankTemp, intSuitTemp, intRandTemp;
 		// Just like BubbleStr find the length of the array being sorted
+		int intRankTemp, intSuitTemp, intRandTemp;
 		for(int intCount = 0; intCount < intLength - 1; intCount++) {
 			for(int i = 0; i < intLength - 1; i++) {
 				if( (intArray[i][2]) > (intArray[i+1][2]) ) {
@@ -165,10 +165,101 @@ public class lib {
 		return intArray;
 	}
 
+	public static int[][] BubbleHand(int[][] intArray) {
+		int intLength = intArray.length;
+		// Find length
+		int intRankTemp, intSuitTemp;
+		for(int intCount = 0; intCount < intLength - 1; intCount++) {
+			for(int i = 0; i < intLength - 1; i++) {
+				if( (intArray[i][0]) > (intArray[i+1][0]) ) {
+					// compare the size of the two integers
+					intRankTemp = intArray[i][0];
+					intArray[i][0] = intArray[i+1][0];
+					intArray[i+1][0] = intRankTemp;
+					// swap rank of the cards
+					intSuitTemp = intArray[i][1];
+					intArray[i][1] = intArray[i+1][1];
+					intArray[i+1][1] = intSuitTemp;
+					// swap the suit of the cards
+				}
+			}
+		}
+		return intArray;
+	}
+
 	public static int Hand(int[][] intHand) {
 		// There are 10 possible hands in video poker and this playset is going by jacks or better.
 		// This method will identify what hand it is and the correpsonding multiplier to the pot to return.
 		// It will start from the highest scoring hand and go down to the lowest as to not skip over higher ranking hands
-		//if(intHand[0][1] == intHand[1][1] && intHand[1][1] == intHand[2][1] && intHand[2][1] == intHand[3][1] && intHand[3][1] == intHand[4][1] && intHand[0][1]
-	//}
+		intHand = BubbleHand(intHand);
+		boolean boolFlush = false;
+		boolean boolStraight = false;
+		boolean boolJack = false;
+		int intMatch = 0; 
+		//int intPairNum;
+		// Sort the hand to make it easier to read the hand
+		for(int i = 0; i < 5; i++) {
+		System.out.println(intHand[i][0]);
+		}
+		if(intHand[0][1] == intHand[1][1] && intHand[1][1] == intHand[2][1] && intHand[2][1] == intHand[3][1] && intHand[3][1] == intHand[4][1]) {
+			boolFlush = true;
+			// This conditional checks for the requirement of a flush and sets a boolean to true if it is
+		} 
+		if(intHand[0][0] == intHand[1][0] + 1 && intHand[1][0] == intHand[2][0] + 1 && intHand[2][0] == intHand[3][0] + 1 && intHand[3][0] == intHand[4][0] + 1) {
+			boolStraight = true;
+			// This conditional checks for a straight and sets a boolean true if it is
+		}
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				if(intHand[i][0] == intHand[j][0] && intHand[i][1] != intHand[j][1]) {
+					// Compares each card to each other and if they have the same rank but NOT the same suit (prevents the same card being flagged as another card) it increments the amount of matches
+					intMatch++;
+					if(intHand[i][0] >= 10) {
+						boolJack = true;
+						// this is for the case if the one pair is picked and it must be determined if the pair has jacks or better
+					}
+					// 2 matches == one pair
+					// 4 matches == two pair
+					// 6 matches == three of a kind
+					// 8 matches == full house
+					// 12 matches == four of a kind
+				}
+			}
+		} 
+
+		if(boolFlush == true && boolStraight == true) {
+			// In poker, if the hand is both a flush and a straight it is either a royal flush or a straight flush so this checks the booleans that were turned on earlier
+			if(intHand[4][0] == 13) {
+				return 800;
+				// If the last card in the sorted array is an ace and the hand has the modifier of being a straight and flush that means it is a royal flush and the corresponding multiplier of 800 is returned
+			} else {
+				return 50;
+				// 50 is the multiplier of a straight flush
+			}
+		} else if(intMatch == 12) {
+			return 25;
+			// 25; four of a kind
+		} else if(intMatch == 8) {
+			return 9;
+			// 9; full house
+		} else if(boolFlush == true) {
+			return 6;
+			// 6; flush
+		} else if(boolStraight == true) {
+			return 4;
+			// 4; straight
+		} else if(intMatch == 6) {
+			return 3;
+			// 3; three of a kind
+		} else if(intMatch == 4) {
+			return 2;
+			// 2; two pair
+		} else if(intMatch == 2 && boolJack == true) {
+			return 1;
+			// 1; jacks or better one pair
+		} else {
+			return 0;
+			// whoops, looks like you lost your money :(
+		}
+	}
 }

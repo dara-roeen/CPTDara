@@ -118,6 +118,8 @@ public static void main(String[] args) {
 		intHand[i][0] = intDeck[i][0];
 		intHand[i][1] = intDeck[i][1];
 		}
+
+		lib.Hand(intHand);
 		// Passes the first 5 cards to the hand array.
 	}
 }
