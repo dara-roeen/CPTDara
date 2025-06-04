@@ -19,9 +19,10 @@ public static void main(String[] args) {
 		int intBet = 0;
 		int[][] intDeck = new int[52][3];
 		int[][] intHand = new  int[5][2];
+		String strCont;
 		// First column is for the rank and second is for suit
-		
 		lib.Menu(con);
+		while(true) {
 		// Call the menu function to handle all cases and break to access the main game.
 		con.setDrawFont(rubik);
 		con.setBackgroundColor(tropical);
@@ -118,8 +119,29 @@ public static void main(String[] args) {
 		intHand[i][0] = intDeck[i][0];
 		intHand[i][1] = intDeck[i][1];
 		}
-
-		lib.Hand(intHand);
 		// Passes the first 5 cards to the hand array.
+
+		con.drawString(String.format("%d",intHand[0][0]), 110, 315);
+		con.drawString(String.format("%d",intHand[1][0]), 210, 315);
+		con.drawString(String.format("%d",intHand[2][0]), 310, 315);
+		con.drawString(String.format("%d",intHand[3][0]), 410, 315);
+		con.drawString(String.format("%d",intHand[4][0]), 510, 315);
+		intBet = intBet*lib.Hand(intHand);
+
+		con.sleep(50);
+		con.repaint();
+		con.clear();
+		con.drawString("Bet Returned", 480, 315);
+		intMoney = intMoney + intBet;
+		intBet = 0;
+
+		con.drawString("Continue? (y/n)", 480, 400);
+		strCont = con.readLine();
+		if(strCont.equalsIgnoreCase("y")) {
+			continue;
+		} else {
+			break;
+		}
+		}
 	}
 }
