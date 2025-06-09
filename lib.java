@@ -205,12 +205,12 @@ public class lib {
 			boolFlush = true;
 			// This conditional checks for the requirement of a flush and sets a boolean to true if it is
 		} 
-		if(intHand[0][0] == intHand[1][0] + 1 && intHand[1][0] == intHand[2][0] + 1 && intHand[2][0] == intHand[3][0] + 1 && intHand[3][0] == intHand[4][0] + 1) {
+		if(intHand[0][0] == intHand[1][0] - 1 && intHand[1][0] == intHand[2][0] - 1 && intHand[2][0] == intHand[3][0] - 1 && intHand[3][0] == intHand[4][0] - 1) {
 			boolStraight = true;
 			// This conditional checks for a straight and sets a boolean true if it is
 		}
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
 				if(intHand[i][0] == intHand[j][0] && intHand[i][1] != intHand[j][1]) {
 					// Compares each card to each other and if they have the same rank but NOT the same suit (prevents the same card being flagged as another card) it increments the amount of matches
 					intMatch++;
@@ -261,5 +261,20 @@ public class lib {
 			return 0;
 			// whoops, looks like you lost your money :(
 		}
+	}
+
+	public static void DrawCards(Console con, int[][] intHand) {
+		BufferedImage imgBack = con.loadImage("res/back.png");
+		con.drawImage(imgBack, 50, 215);
+		con.drawImage(imgBack, 290, 215);
+		con.drawImage(imgBack, 530, 215);
+		con.drawImage(imgBack, 770, 215);
+		con.drawImage(imgBack, 1010, 215);
+
+				con.drawString(String.format("%d, suite: %d",intHand[0][0], intHand[0][1]), 200, 215);
+				con.drawString(String.format("%d, suite: %d",intHand[1][0], intHand[1][1]), 400, 215);
+				con.drawString(String.format("%d, suite: %d",intHand[2][0], intHand[2][1]), 600, 215);
+				con.drawString(String.format("%d, suite: %d",intHand[3][0], intHand[3][1]), 800, 215);
+				con.drawString(String.format("%d, suite: %d",intHand[4][0], intHand[4][1]), 1000, 215);
 	}
 }
