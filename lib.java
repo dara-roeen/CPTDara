@@ -10,6 +10,7 @@ public class lib {
 	static Color space = new Color(20, 27, 65);
 	static Color tropical = new Color(145, 142, 244);
 	static Font rubik = new Font("res/Rubik-Bold.ttf", Font.PLAIN, 24);
+	static Font rubikMed = new Font("res/Rubik-Bold.ttf", Font.PLAIN, 64);
 	// Initialize all the colors & fonts that will be used for the theme. Colors were picked from coolors.co
 	
 	public static void Menu(Console con) {
@@ -265,16 +266,75 @@ public class lib {
 
 	public static void DrawCards(Console con, int[][] intHand) {
 		BufferedImage imgBack = con.loadImage("res/back.png");
+		BufferedImage imgFront = con.loadImage("res/front.png");
+		BufferedImage imgDiamond = con.loadImage("res/diamond.png");
+		BufferedImage imgClub = con.loadImage("res/club.png");
+		BufferedImage imgHeart = con.loadImage("res/heart.png");
+		BufferedImage imgSpade = con.loadImage("res/spade.png");
+		// load all images onto memory
 		con.drawImage(imgBack, 50, 215);
 		con.drawImage(imgBack, 290, 215);
 		con.drawImage(imgBack, 530, 215);
 		con.drawImage(imgBack, 770, 215);
 		con.drawImage(imgBack, 1010, 215);
+		con.repaint();
+		// Draw all the back graphics for the image
+		con.sleep(500);
+		// Sleep between the drawing so a smooth animation is made
+		con.setDrawColor(tropical);
+		con.fillRect(0, 50, 1280, 720);
+		con.setDrawColor(Color.BLACK);
+		con.drawImage(imgFront, 50, 215);
+		con.drawImage(imgFront, 290, 215);
+		con.drawImage(imgFront, 530, 215);
+		con.drawImage(imgFront, 770, 215);
+		con.drawImage(imgFront, 1010, 215);
+		con.repaint();
+		// Draw the front of the cards
 
-				con.drawString(String.format("%d, suite: %d",intHand[0][0], intHand[0][1]), 200, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[1][0], intHand[1][1]), 400, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[2][0], intHand[2][1]), 600, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[3][0], intHand[3][1]), 800, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[4][0], intHand[4][1]), 1000, 215);
+		con.setDrawFont(rubikMed);
+		// set to medium sized font
+		for(int i = 0; i < 5; i++) {
+			if(intHand[i][1] == 1) {
+				con.drawImage(imgDiamond, 80+(240*i), 250);
+				con.drawImage(imgDiamond, 195+(240*i), 425);
+				// diamonds
+			} else if(intHand[i][1] == 2) {
+				con.drawImage(imgClub, 80+(240*i), 250);
+				con.drawImage(imgClub, 195+(240*i), 425);
+				// clubs
+			} else if(intHand[i][1] == 3) {
+				con.drawImage(imgHeart, 80+(240*i), 250);
+				con.drawImage(imgHeart, 195+(240*i), 425);
+				// hearts
+			} else if(intHand[i][1] == 4) {
+				con.drawImage(imgSpade, 80+(240*i), 250);
+				con.drawImage(imgSpade, 195+(240*i), 425);
+				// spades
+			}
+			if(intHand[i][0] < 10) {
+				con.drawString(String.format("%d", intHand[i][0]), 140 + (240*i), 320);
+			} else if(intHand[i][0] == 10) {
+				con.drawString("J", 140 + (240*i), 320);
+			} else if(intHand[i][0] == 11) {
+				con.drawString("Q", 140 + (240*i), 320);
+			} else if(intHand[i][0] == 12) {
+				con.drawString("K", 140 + (240*i), 320);
+			} else if(intHand[i][0] == 13) {
+				con.drawString("A", 140 + (240*i), 320);
+			}
+			// if conditions to check if the card if it is a face card and whether to print a letter or the number
+		}
+		// Loops through the suit of each hand and prints out the corresponding graphic
+		con.setDrawFont(rubik);
+		con.drawString("1", 160, 550);
+		con.drawString("2", 400, 550);
+		con.drawString("3", 640, 550);
+		con.drawString("4", 880, 550);
+		con.drawString("5", 1120, 550);
+		// print the number below the card for when the player wants to swap out the cards
+
+
 	}
+	// This function is used for drawing the cards as graphics
 }

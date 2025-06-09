@@ -126,29 +126,11 @@ public static void main(String[] args) {
 				intHand[i][0] = intDeck[i][0];
 				intHand[i][1] = intDeck[i][1];
 				}
-				// Passes the first 5 cards to the hand array.
 		
-				con.setDrawColor(Color.WHITE);
-				con.drawString(String.format("%d, suite: %d",intHand[0][0], intHand[0][1]), 200, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[1][0], intHand[1][1]), 400, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[2][0], intHand[2][1]), 600, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[3][0], intHand[3][1]), 800, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[4][0], intHand[4][1]), 1000, 215);
-
-
-				// TEST //
 				lib.DrawCards(con, intHand);
-				// TEST //
+				// passes the hand to the DrawCards function which sets the whole board
 
-
-				// print out the ranks of the hand with the suit
-				con.drawString("1", 200, 250);
-				con.drawString("2", 400, 250);
-				con.drawString("3", 600, 250);
-				con.drawString("4", 800, 250);
-				con.drawString("5", 1000, 250);
-				// print the number below the card for when the player wants to swap out the cards.
-
+				con.setDrawColor(Color.WHITE);
 				con.drawString("Would you like to discard any cards?", 400, 400);
 				strDiscard = con.readLine();
 				con.clear();
@@ -173,25 +155,15 @@ public static void main(String[] args) {
 				}
 
 				con.setBackgroundColor(tropical);
-				con.setDrawColor(Color.WHITE);
-				con.drawString(String.format("%d, suite: %d",intHand[0][0], intHand[0][1]), 200, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[1][0], intHand[1][1]), 400, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[2][0], intHand[2][1]), 600, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[3][0], intHand[3][1]), 800, 215);
-				con.drawString(String.format("%d, suite: %d",intHand[4][0], intHand[4][1]), 1000, 215);
+				lib.DrawCards(con, intHand);
 				// print out the new ranks of the cards in the replaced hand with the suit
-				con.drawString("1", 200, 250);
-				con.drawString("2", 400, 250);
-				con.drawString("3", 600, 250);
-				con.drawString("4", 800, 250);
-				con.drawString("5", 1000, 250);
 				
 				con.sleep(500);
 				intMult = lib.Hand(intHand);
 				// Pass the array for the hand to the function to calculate the return value for the multiplier.
 				con.drawString("Bet Returned", 480, 350);
 				if(intMult == 0) {
-					con.drawString(String.format("High Card/Less than jacks pair, %d lost.",intBet), 480, 300);
+					con.drawString(String.format("High Card/Less than jacks pair, $%d lost.",intBet), 480, 300);
 				} else if(intMult == 1) {
 					con.drawString(String.format("Jacks or Better Pair, same bet returned."), 480, 300);
 				} else if(intMult == 2) {
