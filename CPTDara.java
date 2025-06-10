@@ -215,10 +215,11 @@ public static void main(String[] args) {
 				con.drawString(String.format("Pot: $%d",intBet), 900, 0);
 				if(intMoney == 0) {
 					con.setDrawColor(Color.BLACK);
-					con.fillRoundRect(415, 305, 390, 60, 30, 30);
+					con.fillRoundRect(490, 305, 320, 60, 30, 30);
 					con.setDrawColor(greenblue);
-					con.fillRoundRect(420, 310, 380, 50, 30, 30);
-					con.drawString("Ouch, you lost. Any Words?", 500, 415);
+					con.fillRoundRect(495, 310, 310, 50, 30, 30);
+					con.setDrawColor(Color.WHITE);
+					con.drawString("Ouch, you lost. Any Words?", 500, 315);
 					TextOutputFile leaderboard = new TextOutputFile("score.txt", true);
 					// Open the score.txt files to write and append to last line
 					leaderboard.println(strName);
@@ -230,7 +231,12 @@ public static void main(String[] args) {
 					break;
 				}
 					// If the player has 0 dollars stop break the loop and end the game to prevent debt.
-				con.drawString("Continue? (y/n)", 480, 400);
+				con.setDrawColor(Color.BLACK);
+				con.fillRoundRect(490, 305, 180, 60, 30, 30);
+				con.setDrawColor(greenblue);
+				con.fillRoundRect(495, 310, 170, 50, 30, 30);
+				con.setDrawColor(Color.WHITE);
+				con.drawString("Continue? (y/n)", 500, 315);
 				strCont = con.readLine();
 				if(strCont.equalsIgnoreCase("y")) {
 					continue;

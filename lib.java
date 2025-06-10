@@ -313,8 +313,11 @@ public class lib {
 				con.drawImage(imgSpade, 195+(240*i), 425);
 				// spades
 			}
-			if(intHand[i][0] < 10) {
-				con.drawString(String.format("%d", intHand[i][0]), 140 + (240*i), 320);
+			if(intHand[i][0] < 9) {
+				con.drawString(String.format("%d", intHand[i][0]+1), 140 + (240*i), 320);
+			} else if(intHand[i][0] == 9) {
+				con.drawString(String.format("%d", intHand[i][0]+1), 125 + (240*i), 320);
+				// the 10 shows up not centered so it has to be in it's own else if condition
 			} else if(intHand[i][0] == 10) {
 				con.drawString("J", 140 + (240*i), 320);
 			} else if(intHand[i][0] == 11) {
