@@ -96,8 +96,6 @@ public static void main(String[] args) {
 		
 		
 				con.clear();
-				con.setDrawColor(greenblue);
-				con.fillRoundRect(420, 310, 380, 50, 30, 30);
 				con.setDrawColor(tropical);
 				con.fillRect(0, 50, 1280, 720);
 				// Clear the board to display the cards
@@ -135,12 +133,18 @@ public static void main(String[] args) {
 				intHand[i][0] = intDeck[i][0];
 				intHand[i][1] = intDeck[i][1];
 				}
+				// Add the first 5 cards of the deck to the player hand.
 		
 				lib.DrawCards(con, intHand);
 				// passes the hand to the DrawCards function which sets the whole board
 
+				con.setDrawColor(Color.BLACK);
+				con.fillRoundRect(410, 105, 400, 60, 30, 30);
+				con.setDrawColor(greenblue);
+				con.fillRoundRect(415, 110, 390, 50, 30, 30);
 				con.setDrawColor(Color.WHITE);
-				con.drawString("Would you like to discard any cards?", 400, 400);
+				con.drawString("Would you like to discard any cards?", 420, 115);
+				// asks for the cards they want to get rid of and redraw.
 				strDiscard = con.readLine();
 				con.clear();
 				intDiscLen = strDiscard.length();
@@ -162,6 +166,7 @@ public static void main(String[] args) {
 						intHand[4][1] = intDeck[i+5][1];
 					}
 				}
+				// This for loop loops through each card that was given to be discarded and grabs a new card from the hand if so
 
 				con.setBackgroundColor(tropical);
 				lib.DrawCards(con, intHand);
@@ -170,27 +175,32 @@ public static void main(String[] args) {
 				con.sleep(500);
 				intMult = lib.Hand(intHand);
 				// Pass the array for the hand to the function to calculate the return value for the multiplier.
-				con.drawString("Bet Returned", 480, 350);
+				con.setDrawColor(Color.BLACK);
+				con.fillRoundRect(400, 105, 480, 60, 30, 30);
+				con.setDrawColor(greenblue);
+				con.fillRoundRect(405, 110, 470, 50, 30, 30);
+				con.setDrawColor(Color.WHITE);
+				// draw the box for the text to be displayed.
 				if(intMult == 0) {
-					con.drawString(String.format("High Card/Less than jacks pair, $%d lost.",intBet), 480, 300);
+					con.drawString(String.format("High Card/Less than jacks pair, $%d lost.",intBet), 420, 115);
 				} else if(intMult == 1) {
-					con.drawString(String.format("Jacks or Better Pair, same bet returned."), 480, 300);
+					con.drawString(String.format("Jacks or Better Pair, same bet returned."), 420, 115);
 				} else if(intMult == 2) {
-					con.drawString(String.format("Two Pair, %d gained.",intBet*2), 480, 300);
+					con.drawString(String.format("Two Pair, $%d gained.",intBet*2), 420, 115);
 				} else if(intMult == 3) {
-					con.drawString(String.format("Three of a Kind, %d gained.",intBet*3), 480, 300);
+					con.drawString(String.format("Three of a Kind, $%d gained.",intBet*3), 420, 115);
 				} else if(intMult == 4) {
-					con.drawString(String.format("Straight, %d gained.",intBet*4), 480, 300);
+					con.drawString(String.format("Straight, $%d gained.",intBet*4), 420, 115);
 				} else if(intMult == 6) {
-					con.drawString(String.format("Flush, %d gained.",intBet*6), 480, 300);
+					con.drawString(String.format("Flush, $%d gained.",intBet*6), 420, 115);
 				} else if(intMult == 9) {
-					con.drawString(String.format("Full House, %d gained.",intBet*9), 480, 300);
+					con.drawString(String.format("Full House, $%d gained.",intBet*9), 420, 115);
 				} else if(intMult == 25) {
-					con.drawString(String.format("Four of a Kind, %d gained.",intBet*25), 480, 300);
+					con.drawString(String.format("Four of a Kind, $%d gained.",intBet*25), 420, 115);
 				} else if(intMult == 50) {
-					con.drawString(String.format("Straight Flush, %d gained.",intBet*50), 480, 300);
+					con.drawString(String.format("Straight Flush, $%d gained.",intBet*50), 420, 115);
 				} else if(intMult == 800) {
-					con.drawString(String.format("Royal Flush, %d gained.",intBet*800), 480, 300);
+					con.drawString(String.format("Royal Flush, $%d gained.",intBet*800), 420, 115);
 				}
 				// If conditional goes through each case and gives a custom message corresponding on what hand you get.
 				intBet = intBet*intMult;
@@ -204,7 +214,11 @@ public static void main(String[] args) {
 				con.drawString(String.format("Bank: $%d",intMoney), 1050, 0);
 				con.drawString(String.format("Pot: $%d",intBet), 900, 0);
 				if(intMoney == 0) {
-					con.drawString("Ouch, you lost. Any Words", 480, 400);
+					con.setDrawColor(Color.BLACK);
+					con.fillRoundRect(415, 305, 390, 60, 30, 30);
+					con.setDrawColor(greenblue);
+					con.fillRoundRect(420, 310, 380, 50, 30, 30);
+					con.drawString("Ouch, you lost. Any Words?", 500, 415);
 					TextOutputFile leaderboard = new TextOutputFile("score.txt", true);
 					// Open the score.txt files to write and append to last line
 					leaderboard.println(strName);

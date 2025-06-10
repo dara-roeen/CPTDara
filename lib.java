@@ -328,12 +328,15 @@ public class lib {
 		}
 		// Loops through the suit of each hand and prints out the corresponding graphic
 		con.setDrawFont(rubik);
-		con.drawString("1", 160, 550);
-		con.drawString("2", 400, 550);
-		con.drawString("3", 640, 550);
-		con.drawString("4", 880, 550);
-		con.drawString("5", 1120, 550);
-		// print the number below the card for when the player wants to swap out the cards
+		for(int i = 1; i <= 5; i++) {
+		con.setDrawColor(Color.BLACK);
+		con.fillRect(133 + (240*(i-1)), 538, 64, 64);
+		con.setDrawColor(jordy);
+		con.fillRect(135 + (240*(i-1)), 540, 60, 60);
+		con.setDrawColor(Color.BLACK);
+		con.drawString(String.format("%d",i), 160 + (240*(i-1)), 550);
+		}
+		// print the numbers below the card for when the player wants to swap out the cards
 
 
 	}

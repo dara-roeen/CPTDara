@@ -36,3 +36,15 @@ statitan
 800000
 retep
 1500
+dara
+0
+dara
+0
+1000
+3000
+
+0
+dara
+0
+dara
+0
