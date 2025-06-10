@@ -68,8 +68,8 @@ public class lib {
 					con.drawString("Leaderboard", 550, 20);
 					// draws the theme for the leaderboard screen
 					for(int i = 1; i <= 10; i++) {
-						con.drawString(scoreboard[i-1][0], 500, 605 - 55*i);
-						con.drawString(scoreboard[i-1][1], 700, 605 - 55*i);
+						con.drawString(scoreboard[i-1][0], 500, 55*i);
+						con.drawString(scoreboard[i-1][1], 700, 55*i);
 						con.drawString(Integer.toString(i), 450, 55*i);
 						// Numbers the players from 1-10
 					}
@@ -125,8 +125,9 @@ public class lib {
 		String strNameTemp, strScoreTemp;
 		for(int intCount = 0; intCount < intLength - 1; intCount++) {
 			for(int i = 0; i < intLength - 1; i++) {
-				if( (Integer.parseInt(strArray[i][1])) > (Integer.parseInt(strArray[i+1][1])) ) {
+				if( (Integer.parseInt(strArray[i][1])) < (Integer.parseInt(strArray[i+1][1])) ) {
 					// convert the score into integer data and compare the size
+					// does not check if the first value is greater BUT checks if it is smaller so that it gets sorted as largest to smallest.
 					strNameTemp = strArray[i][0];
 					strArray[i][0] = strArray[i+1][0];
 					strArray[i+1][0] = strNameTemp;

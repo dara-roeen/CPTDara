@@ -50,8 +50,17 @@ public static void main(String[] args) {
 				// Sleep so that when play game is selected it does not interfere with the input for the name
 				if(strName == null) {
 					con.drawString("What is your Name?", 500, 315);
-					strName = con.readLine();
 					// Saves the user's name to memory to be used later when the data gets written to the scoreboard
+					strName = con.readLine();
+					if(strName.equals("statitan")) {
+						intMoney = 1000000;
+						con.setDrawColor(space);
+						con.fillRect(0, 0, 1280, 40);
+						con.setDrawColor(Color.WHITE);
+						con.drawString(String.format("Bank: $%d",intMoney), 1050, 0);
+						con.drawString(String.format("Pot: $%d",intBet), 900, 0);
+					}
+					// This if statement checks for the secret code name "statitan and gives $1 million cash if it is entered"
 				}
 				// if conditional checks if name has not been written to already
 				con.clear();

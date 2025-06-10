@@ -28,5 +28,11 @@ dara
 0
 dara
 0
-1
+cuba
 0
+statitan
+0
+statitan
+800000
+retep
+1500
