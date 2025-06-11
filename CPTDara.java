@@ -124,7 +124,7 @@ public static void main(String[] args) {
 				}
 				// This for loop fills the second column which classifies the cards by suite.
 				for(int i = 0; i < 52; i++) {
-					intDeck[i][2] = (int) (Math.random()*1000+1);
+					intDeck[i][2] = (int) (Math.random()*100+1);
 				}
 				// This last for loop fills the final column with random numbers so the array can be bubble sorted and randomized.
 				intDeck = lib.BubbleDeck(intDeck);
