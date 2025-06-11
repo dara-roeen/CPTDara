@@ -26,9 +26,9 @@ public static void main(String[] args) {
 			String strCont;
 			String strDiscard = "";
 			String strName = null;
+			// Call the menu function to handle all cases and break to access the main game.
 			lib.Menu(con);
 			while(true) {
-				// Call the menu function to handle all cases and break to access the main game.
 				con.setDrawFont(rubik);
 				con.setBackgroundColor(tropical);
 				con.setDrawColor(Color.BLACK);
