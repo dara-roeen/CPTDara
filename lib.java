@@ -43,7 +43,7 @@ public class lib {
 				con.setDrawColor(space);
 				con.drawString("Play (p)", 500, 280);
 				con.drawString("View Leaderboard (v)", 500, 330);
-				con.drawString("Help (h)", 500, 380);
+				con.drawString("Help (h) (not completed)", 500, 380);
 				con.drawString("Quit (q)", 500, 430);
 				con.repaint();
 				// Draws the theme for the main menu and repaints layer

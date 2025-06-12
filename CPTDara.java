@@ -1,3 +1,8 @@
+// Dara Roeen
+// Gambling: The Game
+// 2025/06/12
+// 1.34
+
 import arc.*;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -15,7 +20,7 @@ public class CPTDara {
 
 public static void main(String[] args) {
 		while(true) {
-			Console con = new Console("Gambling; The Game", 1280, 720);
+			Console con = new Console("Gambling: The Game", 1280, 720);
 			int intMoney = 1000;
 			int intBet = 0;
 			int intMult;
